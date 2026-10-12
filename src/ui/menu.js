@@ -10,7 +10,7 @@ const TOTAL_SLOTS = 12;
 let keyboardMode = false;
 window.addEventListener('keydown', () => (keyboardMode = true), true);
 window.addEventListener('pointerdown', () => (keyboardMode = false), true);
-
+//
 export function initMenu(grid, { stage, speech, onOpen }) {
   const visible = CHANNELS.filter((c) => !c.hidden);
   const tiles = [];
