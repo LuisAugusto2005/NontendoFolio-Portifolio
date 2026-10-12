@@ -34,9 +34,9 @@ export const profile = {
   card: [
     { label: { pt: 'Hobby', en: 'Hobby', ja: 'しゅみ' }, value: { pt: 'Games, desenvolver Games, Desenhar e Modelar 3D', en: 'Gaming, Game Development, Drawing & 3D Modeling', ja: 'ゲーム、ゲーム開発、イラスト、3Dモデリング' } },
     { label: { pt: 'Console favorito', en: 'Favorite console', ja: 'すきなゲーム機' }, value: 'Nintendo 3DS' },
-    { label: { pt: 'Cor favorita', en: 'Favorite color', ja: 'すきな色' }, value: { pt: 'Vermelho', en: 'Red', ja: 'あか' }, swatch: '#d92b2b' },
+    { label: { pt: 'Jogos Favoritos:', en: 'Favorite Games:', ja: '好きなゲーム：' }, value: { pt: 'Final Fantasy e Monster Hunter', en: 'Final Fantasy & Monster Hunter', ja: 'ファイナルファンタジーとモンスターハンター' }, swatch: '#d92b2b' },
   ],
-  greeting: { pt: 'Vamos criar algo incrível juntos!', en: "Let's build something amazing together!", ja: 'いっしょにすごいものを作ろう！' },
+  greeting: { pt: 'We Ball!', en: "We Ball!", ja: '「We Ball」！' },
   spokenLanguages: [
     { label: { pt: 'Português', en: 'Portuguese', ja: 'ポルトガル語' }, level: { pt: 'Nativo', en: 'Native', ja: 'ネイティブ' } },
     { label: { pt: 'Inglês', en: 'English', ja: '英語' }, level: { pt: 'Avançado', en: 'Advanced', ja: '上級' } },
