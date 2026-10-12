@@ -15,16 +15,19 @@ export const profile = {
   location: { pt: 'Brasil', en: 'Brazil', ja: 'ブラジル' },
   bio: {
     pt: [
-      'Oi! Eu sou o Luis, um desenvolvedor brasileiro que cresceu entre o Wii, o 3DS e muitas horas no Mii Channel.',
-      'Gosto de construir coisas que dão vontade de clicar: interfaces caprichadas, animações fluidas e um pouco de 3D sempre que dá. Este portfólio é a prova — até o meu Mii veio junto.',
+      'Oi! Eu sou o Luis, um desenvolvedor brasileiro que cresceu entre vários jogos, inclusive os da Nintendo e adoro Miis!.',
+      'Gosto de construir coisas muito interativas, como jogos! e sites descolados que dão vontade de clicar: interfaces caprichadas, animações fluidas e um pouco de 3D sempre que dá. Este portfólio é a prova — até o meu Mii veio junto.',
+      'E além disso faço muito desenvolvimento de jogos, que é meu foco como desenvolvedor, adoro fazer jogos!.',
     ],
     en: [
-      "Hi! I'm Luis, a Brazilian developer who grew up between the Wii, the 3DS and way too many hours in the Mii Channel.",
-      "I love building things that make you want to click: polished interfaces, fluid animations and a bit of 3D whenever possible. This portfolio is the proof — even my Mii came along.",
+      "Hi! I'm Luis, a Brazilian developer who grew up playing all kinds of games, including Nintendo games, and I absolutely love Miis!",
+      "I love building interactive things, like games, and cool websites that make you want to click around: polished interfaces, smooth animations, and a bit of 3D whenever possible. This portfolio is proof of that — even my Mii came along!",
+      "On top of that, game development is my main focus as a developer. I really love making games!",
     ],
     ja: [
-      'こんにちは！ブラジル出身の開発者、ルイスです。Wiiと3DS、そしてMiiチャンネルとともに育ちました。',
-      'ついクリックしたくなるものを作るのが好きです。ていねいなUI、なめらかなアニメーション、そしてできるだけ3Dも。このポートフォリオがその証拠──ぼくのMiiも一緒に来ました。',
+      'こんにちは！ルイスです。ブラジル出身の開発者で、任天堂のゲームをはじめ、いろいろなゲームに囲まれて育ちました。Miisも大好きです！',
+      'ゲームのようなインタラクティブな作品や、思わずクリックしたくなるクールなウェブサイトを作るのが好きです。細部までこだわったUI、滑らかなアニメーション、そしてできる限り取り入れる3D。このポートフォリオがその証拠です──僕のMiiも一緒にやって来ました！',
+      'そして、開発者として一番力を入れているのはゲーム開発です。ゲームを作ることが本当に大好きです！',
     ],
   },
   // "Mii Card" fields (StreetPass style). Add, remove or edit freely.
