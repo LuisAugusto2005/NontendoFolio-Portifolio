@@ -1,0 +1,273 @@
+/* Health & Safety style boot screen */
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px 120px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(150, 225, 255, 0.35), rgba(150, 225, 255, 0) 70%),
+    repeating-linear-gradient(180deg, rgba(120, 150, 178, 0.05) 0 1px, transparent 1px 5px),
+    #ffffff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.boot.is-leaving {
+  pointer-events: none;
+  animation: bootOut 0.85s var(--ease-out) forwards;
+}
+
+.boot-inner {
+  max-width: 860px;
+  text-align: center;
+  animation: bootIn 0.9s var(--ease-out) both;
+}
+
+.boot-warning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.boot-warning svg {
+  width: clamp(40px, 5vw, 56px);
+  flex: none;
+}
+
+.boot h1 {
+  margin: 0;
+  font-size: clamp(22px, 3.3vw, 38px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.boot-lead {
+  margin: clamp(20px, 4vh, 40px) 0 10px;
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.boot-body {
+  margin: 0 auto;
+  max-width: 720px;
+  font-size: clamp(15px, 1.8vw, 20px);
+  font-weight: 500;
+  line-height: 1.75;
+  color: #4a5866;
+}
+
+.boot-more {
+  margin: 18px 0 0;
+  font-size: clamp(13px, 1.4vw, 16px);
+  color: var(--ink-faint);
+  font-weight: 500;
+}
+
+.boot-press {
+  margin-top: clamp(30px, 7vh, 70px);
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boot-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--ink-faint);
+  font-size: 17px;
+}
+
+.boot-pct {
+  font-variant-numeric: tabular-nums;
+  min-width: 3.2em;
+  text-align: left;
+}
+
+/* Wii-style loading ring of dots */
+.spinner {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(52, 190, 240, 0) 0deg, var(--wii) 300deg, rgba(52, 190, 240, 0) 360deg);
+  -webkit-mask: radial-gradient(circle, transparent 52%, #000 54%);
+  mask: radial-gradient(circle, transparent 52%, #000 54%);
+  animation: spin 0.9s linear infinite;
+}
+
+.boot-continue {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: clamp(18px, 2.4vw, 26px);
+  font-weight: 700;
+  color: var(--ink);
+  padding: 10px 22px;
+  border-radius: 999px;
+  animation:
+    pressIn 0.8s var(--ease-out) both,
+    pressPulse 2.2s ease-in-out 0.8s infinite;
+}
+
+.boot-continue:focus-visible {
+  outline: none;
+  background: rgba(52, 190, 240, 0.1);
+  box-shadow: 0 0 0 2px rgba(52, 190, 240, 0.35);
+}
+
+.a-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  font-size: 0.95em;
+  font-weight: 800;
+  color: #55606b;
+  background: radial-gradient(circle at 40% 30%, #ffffff 0%, #eef1f4 45%, #c9d0d7 100%);
+  border: 2px solid #aeb8c2;
+  box-shadow:
+    inset 0 -2px 3px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.15);
+  vertical-align: middle;
+}
+
+.boot-options {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 16px;
+  animation: bootIn 0.9s var(--ease-out) 0.2s both;
+}
+
+.boot-langs {
+  display: flex;
+  gap: 8px;
+}
+
+.chip {
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 2px solid #d3dce4;
+  background: linear-gradient(180deg, #fff, #eef2f5);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink-soft);
+  transition:
+    transform 0.3s var(--spring),
+    border-color 0.2s,
+    color 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.chip:hover,
+.chip:focus-visible {
+  outline: none;
+  border-color: var(--wii);
+  color: var(--wii-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 0 14px rgba(52, 190, 240, 0.4);
+}
+
+.chip[aria-pressed='true'] {
+  background: linear-gradient(180deg, #8fe2ff 0%, #3fc2f2 48%, #12a4e3 52%, #36bdf0 100%);
+  border-color: #0f97d4;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 60, 110, 0.35);
+}
+
+.boot-sound {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 16px 0 12px;
+  border-radius: 999px;
+  border: 2px solid #d3dce4;
+  background: linear-gradient(180deg, #fff, #eef2f5);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink-soft);
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    transform 0.3s var(--spring);
+}
+
+.boot-sound svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.boot-sound:hover,
+.boot-sound:focus-visible {
+  outline: none;
+  border-color: var(--wii);
+  color: var(--wii-deep);
+  transform: translateY(-2px);
+}
+
+.boot-sound[aria-pressed='false'] .wave {
+  opacity: 0;
+}
+
+.boot-sound[aria-pressed='false'] {
+  text-decoration: line-through;
+  color: var(--ink-faint);
+}
+
+@keyframes bootIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes bootOut {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(1.06);
+  }
+}
+
+@keyframes pressIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes pressPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}

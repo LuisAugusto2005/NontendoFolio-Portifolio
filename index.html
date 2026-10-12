@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#d9f3ff" />
+    <meta name="description" content="Portfólio de Luis Augusto — inspirado no Wii, Wii U e Nintendo 3DS. Portfolio inspired by the Wii, Wii U and Nintendo 3DS." />
+    <meta property="og:title" content="NontendoFolio — Luis Augusto" />
+    <meta property="og:description" content="A Wii/3DS-inspired portfolio starring a 3D Mii." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" href="./models/MyCoolMii.glb" as="fetch" crossorigin />
+    <title>NontendoFolio</title>
+  </head>
+  <body>
+    <!-- Frutiger Aero sky: gradient, ribbons, light rays and bubbles -->
+    <div id="bg" aria-hidden="true">
+      <div class="bg-sky"></div>
+      <div class="bg-rays"></div>
+      <svg class="bg-ribbons" viewBox="0 0 1600 900" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="rib1" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#ffffff" stop-opacity="0" />
+            <stop offset="0.35" stop-color="#ffffff" stop-opacity="0.85" />
+            <stop offset="0.7" stop-color="#bdeeff" stop-opacity="0.55" />
+            <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient id="rib2" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#8fe1ff" stop-opacity="0" />
+            <stop offset="0.5" stop-color="#8fe1ff" stop-opacity="0.35" />
+            <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <path class="rib rib-a" fill="url(#rib1)" d="M-100 520 C 250 380, 520 640, 860 500 S 1400 330, 1700 470 L 1700 520 C 1400 390, 1150 560, 860 560 S 250 450, -100 590 Z" />
+        <path class="rib rib-b" fill="url(#rib2)" d="M-100 600 C 300 470, 600 700, 950 590 S 1450 450, 1700 560 L 1700 600 C 1450 500, 1200 660, 950 640 S 300 540, -100 660 Z" />
+        <path class="rib rib-c" fill="url(#rib1)" d="M-100 300 C 300 220, 700 360, 1000 280 S 1500 200, 1700 260 L 1700 285 C 1500 235, 1250 330, 1000 320 S 300 260, -100 335 Z" />
+      </svg>
+      <div class="bg-stripes"></div>
+      <canvas id="bubbles"></canvas>
+    </div>
+
+    <div id="app" class="is-booting">
+      <!-- 3DS-style status bar -->
+      <header class="statusbar">
+        <button class="status-user" type="button" data-open="about" data-i18n-aria="ch.about.title">
+          <span class="avatar"><img class="mii-face" alt="" /></span>
+          <span class="status-user-text">
+            <strong class="status-name" data-profile="name"></strong>
+            <small class="status-role" data-profile="role"></small>
+          </span>
+        </button>
+        <div class="status-right">
+          <div class="lang-switch" role="group" data-i18n-aria="settings.language"></div>
+          <button class="icon-btn" type="button" data-toggle="music" data-i18n-aria="common.music" data-i18n-title="common.music">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18.5a2.5 2.5 0 1 1-2.5-2.5c.4 0 .7.05 1 .2V5.5l11-2.5v12a2.5 2.5 0 1 1-2.5-2.5c.4 0 .7.05 1 .2V7.4L9 9.2z" /></svg>
+          </button>
+          <button class="icon-btn" type="button" data-toggle="sfx" data-i18n-aria="common.sound" data-i18n-title="common.sound">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" /><path class="wave" d="M15 8.5c1.6 1.8 1.6 5.2 0 7M17.6 6c2.9 3.3 2.9 8.7 0 12" fill="none" stroke-width="2" stroke-linecap="round" /></svg>
+          </button>
+          <span class="status-signal" aria-hidden="true">
+            <i></i><i></i><i></i>
+          </span>
+          <span class="status-battery" aria-hidden="true"><i></i></span>
+        </div>
+      </header>
+
+      <main class="home" id="home">
+        <section class="stage" aria-label="Mii">
+          <div class="stage-host" id="stage-host"></div>
+          <div class="speech" id="speech" role="status" aria-live="polite">
+            <p class="speech-text"></p>
+          </div>
+          <div class="nameplate">
+            <span class="nameplate-name" data-profile="name"></span>
+            <span class="nameplate-role" data-profile="role"></span>
+          </div>
+        </section>
+
+        <section class="channels" data-i18n-aria="status.menu">
+          <div class="channel-grid" id="channel-grid"></div>
+        </section>
+      </main>
+
+      <!-- Wii-style bottom bar -->
+      <footer class="bottombar">
+        <svg class="bottombar-shape" viewBox="0 0 1600 140" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="barFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffffff" />
+              <stop offset="0.25" stop-color="#f1f5f8" />
+              <stop offset="1" stop-color="#d9e2e9" />
+            </linearGradient>
+          </defs>
+          <path d="M0 22 C 60 22, 120 0, 200 0 S 300 30, 380 34 L 1220 34 C 1300 30, 1320 0, 1400 0 S 1540 22, 1600 22 L 1600 140 L 0 140 Z" fill="url(#barFill)" />
+          <path d="M0 22 C 60 22, 120 0, 200 0 S 300 30, 380 34 L 1220 34 C 1300 30, 1320 0, 1400 0 S 1540 22, 1600 22" fill="none" stroke="#33c3f3" stroke-width="2.5" vector-effect="non-scaling-stroke" />
+        </svg>
+        <button class="round-btn round-btn--left" type="button" data-open="settings" data-i18n-aria="ch.settings.title">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 15.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17zm0 12.7a4.2 4.2 0 1 1 0-8.4 4.2 4.2 0 0 1 0 8.4zm16.3-1.2v-6l-4.5-.9a12 12 0 0 0-1.3-3.1l2.6-3.8-4.3-4.3-3.8 2.6a12 12 0 0 0-3.1-1.3l-.9-4.5h-6l-.9 4.5a12 12 0 0 0-3.1 1.3l-3.8-2.6-4.3 4.3 2.6 3.8a12 12 0 0 0-1.3 3.1l-4.5.9v6l4.5.9c.3 1.1.7 2.1 1.3 3.1l-2.6 3.8 4.3 4.3 3.8-2.6c1 .6 2 1 3.1 1.3l.9 4.5h6l.9-4.5c1.1-.3 2.1-.7 3.1-1.3l3.8 2.6 4.3-4.3-2.6-3.8c.6-1 1-2 1.3-3.1z" /></svg>
+          <span class="round-btn-label" data-i18n="ch.settings.title"></span>
+        </button>
+        <div class="clock" aria-live="off">
+          <div class="clock-time"><span class="hh">00</span><span class="colon">:</span><span class="mm">00</span></div>
+          <div class="clock-date"></div>
+        </div>
+        <button class="round-btn round-btn--right" type="button" data-open="contact" data-i18n-aria="ch.contact.title">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="13" width="32" height="22" rx="3.5" /><path d="M9.5 15.5 24 26.5l14.5-11" fill="none" stroke-width="2.6" stroke-linejoin="round" /></svg>
+          <span class="round-btn-label" data-i18n="ch.contact.title"></span>
+          <i class="mail-badge" aria-hidden="true"></i>
+        </button>
+      </footer>
+    </div>
+
+    <!-- Opened channel (banner → page) -->
+    <div id="channel-layer" class="channel-layer" hidden></div>
+
+    <!-- Health & safety boot screen -->
+    <div id="boot" class="boot" role="dialog" aria-modal="true" aria-labelledby="boot-title">
+      <div class="boot-inner">
+        <div class="boot-warning">
+          <svg viewBox="0 0 64 56" aria-hidden="true"><path d="M32 3 62 54H2z" fill="#ffd23f" stroke="#3d4a57" stroke-width="3.5" stroke-linejoin="round" /><rect x="29" y="18" width="6" height="20" rx="3" fill="#3d4a57" /><circle cx="32" cy="45" r="3.6" fill="#3d4a57" /></svg>
+          <h1 id="boot-title" data-i18n="boot.title"></h1>
+        </div>
+        <p class="boot-lead" data-i18n="boot.lead"></p>
+        <p class="boot-body" data-i18n="boot.body"></p>
+        <p class="boot-more" data-i18n="boot.more"></p>
+        <div class="boot-press" aria-live="polite">
+          <span class="boot-loading"><span class="spinner" aria-hidden="true"></span><span data-i18n="boot.loading"></span> <span class="boot-pct">0%</span></span>
+          <button class="boot-continue" type="button" hidden></button>
+        </div>
+      </div>
+      <div class="boot-options">
+        <div class="boot-langs" role="group" data-i18n-aria="boot.language"></div>
+        <button class="boot-sound" type="button" aria-pressed="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" /><path class="wave" d="M15 8.5c1.6 1.8 1.6 5.2 0 7M17.6 6c2.9 3.3 2.9 8.7 0 12" fill="none" stroke-width="2" stroke-linecap="round" /></svg>
+          <span data-i18n="boot.headphones"></span>
+        </button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <div id="cursor" class="cursor" aria-hidden="true"></div>
+    <div id="fx" class="fx-layer" aria-hidden="true"></div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

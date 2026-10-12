@@ -1,0 +1,395 @@
+:root {
+  --font: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Yu Gothic UI', 'Segoe UI', system-ui, sans-serif;
+  --ink: #34414e;
+  --ink-soft: #66778a;
+  --ink-faint: #97a6b4;
+  --wii: #34bef0;
+  --wii-deep: #0b8fd0;
+  --wii-glow: rgba(52, 190, 240, 0.55);
+  --leaf: #5cc84a;
+  --sun: #ffd23f;
+  --line: #c9d4dd;
+  --glass: rgba(255, 255, 255, 0.62);
+  --glass-strong: rgba(255, 255, 255, 0.86);
+  --shadow-soft: 0 10px 30px rgba(30, 90, 140, 0.14);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --spring-soft: cubic-bezier(0.34, 1.3, 0.64, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --radius: 22px;
+  --status-h: 64px;
+  --bar-h: 132px;
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--ink);
+  background: #e8f6fe;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background: none;
+  padding: 0;
+}
+
+img,
+svg {
+  display: block;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+a {
+  color: var(--wii-deep);
+}
+
+:focus-visible {
+  outline: 3px solid var(--wii);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── Hand pointer ─────────────────────────────────────────────────────── */
+html.cursor-on,
+html.cursor-on * {
+  cursor: none !important;
+}
+
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 46px;
+  height: 56px;
+  z-index: 10000;
+  pointer-events: none;
+  display: none;
+  transform-origin: 15px 3px;
+  will-change: transform;
+  filter: drop-shadow(0 4px 4px rgba(20, 60, 100, 0.25));
+}
+
+html.cursor-on .cursor {
+  display: block;
+}
+
+.cursor svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transition: transform 0.18s var(--spring);
+  transform-origin: 15px 3px;
+}
+
+.cursor.is-hover svg {
+  transform: scale(1.12);
+}
+
+.cursor.is-down svg {
+  transform: scale(0.88) rotate(-6deg);
+}
+
+.cursor .glow {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.cursor.is-hover .glow {
+  opacity: 1;
+}
+
+/* ── Background (Frutiger Aero sky) ───────────────────────────────────── */
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-sky {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 12% -8%, #ffffff 0%, rgba(255, 255, 255, 0) 62%),
+    radial-gradient(ellipse 60% 50% at 95% 110%, rgba(170, 236, 255, 0.55) 0%, rgba(170, 236, 255, 0) 70%),
+    linear-gradient(180deg, #b8e7ff 0%, #d9f2ff 26%, #f2faff 52%, #ffffff 72%, #edf3f7 100%);
+}
+
+.bg-rays {
+  position: absolute;
+  left: -40vmax;
+  top: -60vmax;
+  width: 120vmax;
+  height: 120vmax;
+  background: repeating-conic-gradient(from 0deg, rgba(255, 255, 255, 0.5) 0deg 5deg, rgba(255, 255, 255, 0) 5deg 15deg);
+  -webkit-mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, 0.35) 30%, transparent 58%);
+  mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, 0.35) 30%, transparent 58%);
+  animation: spin 160s linear infinite;
+  opacity: 0.75;
+}
+
+.bg-ribbons {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.rib {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ribbon 16s ease-in-out infinite alternate;
+}
+
+.rib-b {
+  animation-duration: 21s;
+  animation-delay: -6s;
+}
+
+.rib-c {
+  animation-duration: 25s;
+  animation-delay: -12s;
+  opacity: 0.8;
+}
+
+.bg-stripes {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(180deg, rgba(120, 150, 178, 0.075) 0 1px, transparent 1px 5px);
+  -webkit-mask-image: linear-gradient(180deg, transparent 10%, #000 70%);
+  mask-image: linear-gradient(180deg, transparent 10%, #000 70%);
+}
+
+#bubbles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ribbon {
+  0% {
+    transform: translate3d(-3%, 0, 0) scaleY(1);
+  }
+  100% {
+    transform: translate3d(3%, -2.5%, 0) scaleY(1.25);
+  }
+}
+
+/* ── Glass surfaces ───────────────────────────────────────────────────── */
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.66) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(150, 185, 210, 0.25),
+    var(--shadow-soft);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  backdrop-filter: blur(16px) saturate(1.5);
+  border-radius: var(--radius);
+}
+
+/* ── Wii pill buttons ─────────────────────────────────────────────────── */
+.wii-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 58px;
+  min-width: 200px;
+  padding: 0 34px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #f6f9fb 48%, #e6ecf1 52%, #f2f6f9 100%);
+  border: 2.5px solid #c6d1da;
+  color: var(--ink-soft);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  box-shadow:
+    inset 0 2px 0 #fff,
+    0 5px 12px rgba(40, 80, 120, 0.14);
+  transition:
+    transform 0.35s var(--spring),
+    border-color 0.2s,
+    color 0.2s,
+    box-shadow 0.25s;
+}
+
+.wii-btn:hover,
+.wii-btn:focus-visible {
+  outline: none;
+  border-color: var(--wii);
+  color: var(--wii-deep);
+  transform: scale(1.05);
+  box-shadow:
+    inset 0 2px 0 #fff,
+    0 0 0 4px rgba(52, 190, 240, 0.2),
+    0 0 22px rgba(52, 190, 240, 0.55),
+    0 8px 18px rgba(40, 80, 120, 0.18);
+}
+
+.wii-btn:active {
+  transform: scale(0.96);
+  transition-duration: 0.08s;
+}
+
+.wii-btn--small {
+  min-height: 44px;
+  min-width: 0;
+  padding: 0 22px;
+  font-size: 16px;
+}
+
+.wii-btn--blue {
+  background: linear-gradient(180deg, #8fe2ff 0%, #3fc2f2 48%, #12a4e3 52%, #36bdf0 100%);
+  border-color: #0f97d4;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 60, 110, 0.35);
+}
+
+.wii-btn--blue:hover,
+.wii-btn--blue:focus-visible {
+  color: #fff;
+  border-color: #0b86c2;
+}
+
+.wii-btn[disabled] {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ── Toast ────────────────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--bar-h) + 18px);
+  z-index: 200;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(240, 248, 253, 0.92));
+  border: 2px solid #bfe9fb;
+  box-shadow: 0 10px 30px rgba(20, 90, 140, 0.22);
+  font-weight: 700;
+  color: var(--ink);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 20px) scale(0.9);
+  transition:
+    opacity 0.25s,
+    transform 0.45s var(--spring);
+  max-width: calc(100vw - 32px);
+  text-align: center;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+/* ── FX (ripples, sparkles, bubble pops) ──────────────────────────────── */
+.fx-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fx-ring {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(70, 205, 251, 0.9);
+  box-shadow: 0 0 12px rgba(70, 205, 251, 0.6);
+  animation: ring 0.55s var(--ease-out) forwards;
+}
+
+.fx-spark {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 10px;
+  text-shadow: 0 0 6px #6fe0ff;
+  animation: spark 0.7s var(--ease-out) forwards;
+}
+
+@keyframes ring {
+  from {
+    transform: scale(0.3);
+    opacity: 1;
+  }
+  to {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+@keyframes spark {
+  from {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(var(--dx), var(--dy)) scale(0.2);
+    opacity: 0;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────── */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.12s !important;
+}
