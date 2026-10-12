@@ -9,7 +9,7 @@ export const LANGS = [
 
 const STRINGS = {
   pt: {
-    'meta.title': 'NontendoFolio — Portfólio de {name}',
+    'meta.title': 'NintendoFolio — Portfólio de {name}',
     'boot.title': 'AVISO – SAÚDE E SEGURANÇA',
     'boot.lead': 'ANTES DE NAVEGAR, LEIA COM ATENÇÃO:',
     'boot.body':
@@ -136,7 +136,7 @@ const STRINGS = {
   },
 
   en: {
-    'meta.title': "NontendoFolio — {name}'s Portfolio",
+    'meta.title': "NintendoFolio — {name}'s Portfolio",
     'boot.title': 'WARNING – HEALTH AND SAFETY',
     'boot.lead': 'BEFORE BROWSING, READ CAREFULLY:',
     'boot.body':
@@ -263,7 +263,7 @@ const STRINGS = {
   },
 
   ja: {
-    'meta.title': 'NontendoFolio — {name}のポートフォリオ',
+    'meta.title': 'NintendoFolio — {name}のポートフォリオ',
     'boot.title': '警告 ― 健康と安全のために',
     'boot.lead': 'ご利用の前に、よくお読みください：',
     'boot.body':
