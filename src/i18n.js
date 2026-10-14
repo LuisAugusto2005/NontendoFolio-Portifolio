@@ -34,7 +34,7 @@ const STRINGS = {
     'ch.journey.desc': 'O mural com os momentos da minha jornada.',
     'ch.contact.title': 'Contato',
     'ch.contact.desc': 'Mande uma carta! Eu respondo rapidinho.',
-    'ch.shop.title': 'Loja de CV',
+    'ch.shop.title': 'Loja de Curriculo',
     'ch.shop.desc': 'Baixe meu currículo por 0 pontos!',
     'ch.settings.title': 'Configurações',
     'ch.settings.desc': 'Idioma, som e outras opções.',
@@ -104,7 +104,7 @@ const STRINGS = {
     'contact.write': 'Escrever',
     'contact.subject': 'Olá! Vim pelo seu portfólio',
 
-    'shop.welcome': 'Bem-vindo à Loja de CV!',
+    'shop.welcome': 'Bem-vindo à Loja de Curriculum Vitae!',
     'shop.item': 'Currículo de {name}',
     'shop.desc': 'PDF • Sempre atualizado • Sem DRM',
     'shop.price': 'Preço',

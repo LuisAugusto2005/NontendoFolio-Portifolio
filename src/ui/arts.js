@@ -63,7 +63,7 @@ const ART = {
   shop: () => `
     <div class="shop-bag">
       <span class="shop-handle"></span>
-      <span class="shop-cv">CV</span>
+      <span class="shop-cv">^-^</span>
     </div>
     <div class="shop-tag">0P</div>
     <i class="shop-coin c1"></i><i class="shop-coin c2"></i><i class="shop-coin c3"></i>
