@@ -2,37 +2,37 @@
 // only the tilt is spring-animated, like the pointer rolling with the remote.
 import { getSetting, onSettingChange } from '../settings.js';
 
-const SHAPES = `
-  <rect x="10" y="1.5" width="10" height="27" rx="5"/>
-  <rect x="18.5" y="14" width="9.5" height="13" rx="4.75"/>
-  <rect x="26" y="16" width="9" height="12" rx="4.5"/>
-  <rect x="32.5" y="19.5" width="7.5" height="11" rx="3.75"/>
-  <rect x="7.5" y="19" width="32.5" height="26" rx="11"/>
-  <rect x="1.5" y="23" width="9" height="17" rx="4.5" transform="rotate(-32 6 31.5)"/>`;
+// ── Cursor images ─────────────────────────────────────────────────────────
+// Any PNG (or SVG/WebP) works. Both images should share the same canvas size
+// and alignment so swapping between them doesn't make the hand jump.
+//   idle   → shown normally
+//   hover  → shown over anything clickable
+//   size   → on-screen width/height in CSS px
+//   hotspot→ the "click point", in pixels of the source image
+const BASE = import.meta.env.BASE_URL;
+export const CURSOR = {
+  idle: `${BASE}cursor/hand-open.png`,
+  hover: `${BASE}cursor/hand-point.png`,
+  imageSize: 128,
+  size: 56,
+  hotspot: [48, 4],
+};
 
-const SVG = `
-<svg viewBox="0 0 46 56" aria-hidden="true">
-  <defs>
-    <linearGradient id="handFill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="0.6" stop-color="#f4f8fb"/>
-      <stop offset="1" stop-color="#d9e4ec"/>
-    </linearGradient>
-  </defs>
-  <g class="glow" fill="#46cdfb" stroke="#46cdfb" stroke-width="9" stroke-linejoin="round" opacity="0.45">${SHAPES}</g>
-  <g fill="#43525f" stroke="#43525f" stroke-width="3.4" stroke-linejoin="round">${SHAPES}</g>
-  <g fill="url(#handFill)">${SHAPES}</g>
-  <path d="M19.2 21.5v5 M26.4 23v4.4 M32.8 25.2v3.6" stroke="#aebdc9" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-  <text x="24" y="39.5" font-size="11.5" font-weight="800" fill="#27a6ec" text-anchor="middle" font-family="M PLUS Rounded 1c, sans-serif">1</text>
-</svg>`;
+const scale = CURSOR.size / CURSOR.imageSize;
+const HOT_X = CURSOR.hotspot[0] * scale;
+const HOT_Y = CURSOR.hotspot[1] * scale;
 
-const HOT_X = 15;
-const HOT_Y = 3;
 const INTERACTIVE = 'a, button, [role="button"], input, textarea, select, label, summary, .tile:not(.is-empty), [data-hover]';
 
 export function initCursor(el) {
   const fine = matchMedia('(hover: hover) and (pointer: fine)');
-  el.innerHTML = SVG;
+  el.innerHTML = `
+    <span class="cursor-hand">
+      <img class="cursor-img cursor-idle" src="${CURSOR.idle}" alt="" draggable="false" />
+      <img class="cursor-img cursor-hover" src="${CURSOR.hover}" alt="" draggable="false" />
+    </span>`;
+  el.style.width = el.style.height = `${CURSOR.size}px`;
+  el.style.setProperty('--hot', `${HOT_X}px ${HOT_Y}px`);
   el.style.opacity = '0';
   let x = -100;
   let y = -100;

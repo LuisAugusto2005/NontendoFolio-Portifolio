@@ -13,7 +13,7 @@ const STRINGS = {
     'boot.title': 'AVISO – SAÚDE E SEGURANÇA',
     'boot.lead': 'ANTES DE NAVEGAR, LEIA COM ATENÇÃO:',
     'boot.body':
-      'Este portfólio contém altos níveis de nostalgia, brilho Frutiger Aero e um Mii muito animado. Se sentir uma vontade incontrolável de contratar o desenvolvedor, não resista.',
+      'Este portfólio contém um alto visual legal, carinho e um Mii muito animado. Se sentir uma vontade incontrolável de contratar o desenvolvedor ou até conversar, não resista.',
     'boot.more': 'Mais informações nos canais do menu.',
     'boot.press': 'Pressione {A} para continuar.',
     'boot.tap': 'Toque na tela para continuar.',
@@ -140,7 +140,7 @@ const STRINGS = {
     'boot.title': 'WARNING – HEALTH AND SAFETY',
     'boot.lead': 'BEFORE BROWSING, READ CAREFULLY:',
     'boot.body':
-      'This portfolio contains high levels of nostalgia, Frutiger Aero shine and one very excited Mii. If you feel an uncontrollable urge to hire the developer, do not resist.',
+      'This portfolio has a cool look, lots of heart, and a super-energetic Mii. If you feel an irresistible urge to hire the developer or even just have a chat, do not resist.',
     'boot.more': 'More information in the menu channels.',
     'boot.press': 'Press {A} to continue.',
     'boot.tap': 'Tap the screen to continue.',
@@ -267,7 +267,7 @@ const STRINGS = {
     'boot.title': '警告 ― 健康と安全のために',
     'boot.lead': 'ご利用の前に、よくお読みください：',
     'boot.body':
-      'このポートフォリオには、高濃度のノスタルジー、フルティガーエアロの輝き、そしてとても元気なMiiが含まれています。開発者を採用したくなっても、がまんしないでください。',
+      'このポートフォリオには、クールなビジュアル、たっぷりの愛情、そしてとっても元気なMiiが詰まっています。開発者を雇いたい、あるいはちょっと話してみたいという抑えきれない気持ちが湧いてきたら、我慢しないでください。',
     'boot.more': 'くわしくはメニューのチャンネルをご覧ください。',
     'boot.press': '{A}ボタンを押してください。',
     'boot.tap': '画面をタッチしてください。',

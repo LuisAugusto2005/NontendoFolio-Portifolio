@@ -8,9 +8,9 @@ export const profile = {
   name: 'Luis Augusto',
   nameJa: 'ルイス・アウグスト', // used when the site is in Japanese
   role: {
-    pt: 'Desenvolvedor & criador de experiências interativas',
-    en: 'Developer & interactive experience maker',
-    ja: 'デベロッパー／インタラクティブ体験クリエイター',
+    pt: 'Desenvolvedor & criador de experiências interativas e jogos',
+    en: 'Developer & Interactive Experience and Game Creator',
+    ja: '開発者・インタラクティブ体験／ゲームクリエイター',
   },
   location: { pt: 'Brasil', en: 'Brazil', ja: 'ブラジル' },
   bio: {
@@ -36,7 +36,7 @@ export const profile = {
     { label: { pt: 'Console favorito', en: 'Favorite console', ja: 'すきなゲーム機' }, value: 'Nintendo 3DS' },
     { label: { pt: 'Jogos Favoritos:', en: 'Favorite Games:', ja: '好きなゲーム：' }, value: { pt: 'Final Fantasy e Monster Hunter', en: 'Final Fantasy & Monster Hunter', ja: 'ファイナルファンタジーとモンスターハンター' }, swatch: '#d92b2b' },
   ],
-  greeting: { pt: 'We Ball!', en: "We Ball!", ja: '「We Ball」！' },
+  greeting: { pt: 'Prazer em conhecer!', en: "Nice to meet you!", ja: 'はじめまして！' },
   spokenLanguages: [
     { label: { pt: 'Português', en: 'Portuguese', ja: 'ポルトガル語' }, level: { pt: 'Nativo', en: 'Native', ja: 'ネイティブ' } },
     { label: { pt: 'Inglês', en: 'English', ja: '英語' }, level: { pt: 'Avançado', en: 'Advanced', ja: '上級' } },
@@ -119,7 +119,7 @@ export const projects = [
     title: { pt: 'Projeto Atlas', en: 'Project Atlas', ja: 'プロジェクト・アトラス' },
     band: 'wii',
     bandLabel: 'GAME',
-    cover: { from: '#8af2f2', to: '#2fae4f', glyph: '〇_ｏ' },
+    cover: { from: '#8af2f2', to: '#2fae4f', glyph: '°u°' },
     year: '20XX',
     role: { pt: 'Diretor de Jogo', en: 'Game Director', ja: 'ゲームディレクター' },
     tags: ['Cultural', 'Unity'],
