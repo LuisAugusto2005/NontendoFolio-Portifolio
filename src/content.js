@@ -153,8 +153,10 @@ export const projects = [
 export const skills = {
   meters: [
     { label: { pt: 'Front-end', en: 'Front-end', ja: 'フロントエンド' }, level: 4, color: '#22b5f0' },
-    { label: { pt: '3D & animação', en: '3D & animation', ja: '3D・アニメーション' }, level: 3, color: '#ff5a5f' },
-    { label: { pt: 'UI & design', en: 'UI & design', ja: 'UI・デザイン' }, level: 4, color: '#3fbf5a' },
+    { label: { pt: '3D & animação', en: '3D & animation', ja: '3D・アニメーション' }, level: 3, color: '#fd676c' },
+    { label: { pt: 'Programação de Jogos', en: 'Game Programming', ja: 'ゲームプログラミング' }, level: 4, color: '#f44848' },
+    { label: { pt: 'Game Design', en: 'Game Design', ja: 'ゲームデザイン' }, level: 4, color: '#895aff' },
+    { label: { pt: 'UI design', en: 'UI design', ja: 'UIデザイン' }, level: 4, color: '#3fbf5a' },
     { label: { pt: 'Back-end', en: 'Back-end', ja: 'バックエンド' }, level: 2, color: '#f6a821' },
   ],
   // glyph: short text drawn on the badge. color: badge color.
@@ -167,6 +169,9 @@ export const skills = {
     { name: 'Git', glyph: 'Git', color: '#e84e31' },
     { name: 'Godot', glyph: 'GD', color: '#8a5cf6' },
     { name: 'Unity', glyph: 'C#', color: '#1abcfe' },
+    { name: 'RPG Maker', glyph: 'RPGMK', color: '#dcfe1a' },
+    { name: 'Vite', glyph: 'Vt', color: '#5442fb' },
+    { name: 'Unreal Engine', glyph: 'C++', color: '#f12121' },
   ],
 };
 
@@ -197,6 +202,19 @@ export const journey = [
     },
     icon: '★',
     color: '#5d3fbf',
+  },
+  {
+    // sample: true,
+    when: { pt: '2025 – presente', en: '2025 – Present', ja: '2025年〜現在' },
+    title: { pt: 'Pesquisador em desenvolvimento de software', en: 'Software Development Researcher', ja: 'ソフトウェア開発研究員' },
+    place: { pt: 'Pet Saúde Digital', en: 'Pet Saúde Digital', ja: 'Pet Saúde Digital' },
+    text: {
+      pt: 'Atuo em pesquisa e desenvolvimento de ferramentas digitais voltadas ao apoio de hospitais e ao cuidado de pacientes que sofreram AVC, contribuindo para a criação de soluções que auxiliam profissionais de saúde.',
+      en: 'I work on research and the development of digital tools designed to support hospitals and the care of stroke patients, contributing to solutions that assist healthcare professionals.',
+      ja: '研究活動の一環として、病院や脳卒中を経験した患者さんのケアを支援するデジタルツールの研究・開発に取り組み、医療従事者をサポートするソリューションの開発に貢献しています。',
+    },
+    icon: '√',
+    color: '#ee4e4e',
   },
   {
     sample: true,
