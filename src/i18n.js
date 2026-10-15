@@ -106,7 +106,7 @@ const STRINGS = {
 
     'shop.welcome': 'Bem-vindo à Loja de Curriculum Vitae!',
     'shop.item': 'Currículo de {name}',
-    'shop.desc': 'PDF • Sempre atualizado • Sem DRM',
+    'shop.desc': 'PDF • Sempre atualizado',
     'shop.price': 'Preço',
     'shop.points': '0 pontos',
     'shop.balance': 'Saldo: ∞ pontos',
@@ -161,7 +161,7 @@ const STRINGS = {
     'ch.journey.desc': 'A message board of my journey so far.',
     'ch.contact.title': 'Contact',
     'ch.contact.desc': 'Send me a letter! I reply quickly.',
-    'ch.shop.title': 'CV Shop',
+    'ch.shop.title': 'Resume Shop',
     'ch.shop.desc': 'Download my résumé for 0 points!',
     'ch.settings.title': 'Settings',
     'ch.settings.desc': 'Language, sound and other options.',
@@ -231,9 +231,9 @@ const STRINGS = {
     'contact.write': 'Write',
     'contact.subject': 'Hi! I found you through your portfolio',
 
-    'shop.welcome': 'Welcome to the CV Shop!',
+    'shop.welcome': 'Welcome to the Resume Shop!',
     'shop.item': "{name}'s Résumé",
-    'shop.desc': 'PDF • Always up to date • No DRM',
+    'shop.desc': 'PDF • Always up to date',
     'shop.price': 'Price',
     'shop.points': '0 Points',
     'shop.balance': 'Balance: ∞ points',
@@ -360,7 +360,7 @@ const STRINGS = {
 
     'shop.welcome': '履歴書ショップへようこそ！',
     'shop.item': '{name}の履歴書',
-    'shop.desc': 'PDF・いつでも最新・DRMなし',
+    'shop.desc': 'PDF・いつでも最新',
     'shop.price': '価格',
     'shop.points': '0ポイント',
     'shop.balance': '残高：∞ポイント',

@@ -265,7 +265,9 @@
   touch-action: pan-y;
 }
 
-/* Speech bubble that follows the Mii's head */
+/* Speech bubble that follows the Mii's head.
+   JS sets --x/--y (bubble's bottom-left corner), --tail (tail x inside the
+   bubble) and --max (max width that still fits on screen). */
 .speech {
   position: fixed;
   left: 0;
@@ -273,7 +275,7 @@
   z-index: 20;
   translate: var(--x, -999px) var(--y, -999px);
   width: max-content;
-  max-width: min(320px, 72vw);
+  max-width: var(--max, min(320px, 72vw));
   pointer-events: none;
 }
 
@@ -291,8 +293,8 @@
   font-weight: 700;
   line-height: 1.45;
   color: var(--ink);
-  transform-origin: 18px 110%;
-  transform: translate(-6px, -100%) scale(0.4);
+  transform-origin: var(--tail, 24px) 110%;
+  transform: translateY(-100%) scale(0.4);
   opacity: 0;
   transition:
     transform 0.45s var(--spring),
@@ -303,7 +305,7 @@
 .speech-text::after {
   content: '';
   position: absolute;
-  left: 14px;
+  left: calc(var(--tail, 24px) - 11px);
   bottom: -14px;
   width: 22px;
   height: 18px;
@@ -315,24 +317,13 @@
   transform: skewX(-8deg);
 }
 
-.speech.is-visible .speech-text {
-  transform: translate(-6px, -100%) scale(1);
-  opacity: 1;
-}
-
-.speech.is-flipped .speech-text {
-  transform-origin: calc(100% - 18px) 110%;
-  transform: translate(calc(-100% + 6px), -100%) scale(0.4);
-}
-
-.speech.is-flipped.is-visible .speech-text {
-  transform: translate(calc(-100% + 6px), -100%) scale(1);
-}
-
-.speech.is-flipped .speech-text::after {
-  left: auto;
-  right: 14px;
+.speech.is-tail-right .speech-text::after {
   transform: scaleX(-1) skewX(-8deg);
+}
+
+.speech.is-visible .speech-text {
+  transform: translateY(-100%) scale(1);
+  opacity: 1;
 }
 
 .nameplate {
@@ -782,7 +773,7 @@
   }
 
   .home {
-    grid-template-rows: minmax(220px, 41%) minmax(0, 1fr);
+    grid-template-rows: minmax(250px, 46%) minmax(0, 1fr);
   }
 
   .stage {

@@ -57,17 +57,47 @@ export function createSpeech(el, stage) {
     typeTimer = setTimeout(step, 120);
   }
 
+  // Pick a placement that fits on screen: right of the head, else left of it,
+  // else centered above it. The tail always points at the head.
+  let lastMax = '';
   function position() {
     const p = stage.getHeadClientPos();
     if (!p) return;
-    let x = p.x + 14;
-    const y = p.y - 2;
-    const width = text.offsetWidth || 240;
-    const flip = x + width > window.innerWidth - 12;
-    el.classList.toggle('is-flipped', flip);
-    if (flip) x = p.x - 14;
-    el.style.setProperty('--x', `${Math.round(x)}px`);
-    el.style.setProperty('--y', `${Math.round(Math.max(y, 72 + text.offsetHeight))}px`);
+    const vw = window.innerWidth;
+    const pad = 10;
+    const pref = Math.min(320, vw * 0.72);
+    const spaceRight = vw - pad - (p.x + 4);
+    const spaceLeft = p.x - 4 - pad;
+    let mode = 'above';
+    let max = vw - pad * 2;
+    if (spaceRight >= Math.min(pref, 230)) {
+      mode = 'right';
+      max = Math.min(pref, spaceRight);
+    } else if (spaceLeft >= Math.min(pref, 230)) {
+      mode = 'left';
+      max = Math.min(pref, spaceLeft);
+    } else {
+      max = Math.min(pref + 40, vw - pad * 2);
+    }
+    const maxPx = `${Math.floor(max)}px`;
+    if (maxPx !== lastMax) {
+      el.style.setProperty('--max', maxPx);
+      lastMax = maxPx;
+    }
+    const w = text.offsetWidth || 200;
+    const h = text.offsetHeight || 50;
+    let left;
+    if (mode === 'right') left = p.x - 6;
+    else if (mode === 'left') left = p.x + 6 - w;
+    else left = Math.min(Math.max(p.x - w / 2, pad), vw - pad - w);
+    const tail = Math.min(Math.max(p.x - left + (mode === 'right' ? 18 : mode === 'left' ? -18 : 0), 24), w - 24);
+    el.style.setProperty('--tail', `${Math.round(tail)}px`);
+    el.classList.toggle('is-tail-right', tail > w / 2);
+    // keep it below the status bar
+    const status = document.querySelector('.statusbar')?.getBoundingClientRect().bottom ?? 60;
+    const y = Math.max(p.y - 4, status + 8 + h);
+    el.style.setProperty('--x', `${Math.round(left)}px`);
+    el.style.setProperty('--y', `${Math.round(y)}px`);
   }
 
   stage.onFrame({

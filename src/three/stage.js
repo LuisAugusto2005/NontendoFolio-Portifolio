@@ -52,6 +52,8 @@ function pedestalTopTexture(size = 512) {
 const FRAMES = {
   home: { minY: -0.56, maxY: 2.5, halfW: 1.05, centerY: 0.98, shiftX: 0 },
   homeWide: { minY: -0.58, maxY: 2.2, halfW: 0.95, centerY: 0.95, shiftX: 0.55 },
+  // phones: Mii centered with headroom so the speech bubble fits above him
+  phone: { minY: -0.62, maxY: 2.85, halfW: 0.95, centerY: 0.98, shiftX: 0 },
   profile: { minY: -0.2, maxY: 2.02, halfW: 0.8, centerY: 0.91, shiftX: 0 },
 };
 
@@ -324,7 +326,7 @@ export class Stage {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     this.renderer.setSize(w, h, false);
     this.camera.aspect = w / h;
-    this.frameKey = this.mode === 'profile' ? 'profile' : w / h > 1.25 ? 'homeWide' : 'home';
+    this.frameKey = this.mode === 'profile' ? 'profile' : w < 560 ? 'phone' : w / h > 1.25 ? 'homeWide' : 'home';
     this.computeFraming();
     if (snap) {
       this.camPos.copy(this.camPosTarget);
